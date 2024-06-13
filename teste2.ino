@@ -34,8 +34,8 @@ void setup(void) {
   display.setFont(u8g2_font_NokiaSmallPlain_te);
 
   pinMode(LED, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(6,INPUT);
+ 
+  pinMode(sensor,INPUT);
 
 
   SPI.begin(LORA_CLK, LORA_MISO, LORA_MOSI, LORA_NSS);
@@ -45,50 +45,28 @@ void setup(void) {
 }
 
 void loop() {
-
-
-  
-
-  /*
-    if(counter%2==0){
-		String sendData = " HIGH " ;
-    transmissionState = Lora.startTransmit(sendData) ;
-     Serial.println(F("high"));
-    }
-    else{
-      String sendData = " LOW " ;
-    transmissionState = Lora.startTransmit(sendData) ;
-    Serial.println(F("low")) ;
-    }*/
-
   valor = analogRead(sensor);
 
-  Serial.println(valor);  // get value using T0
-
-  if (valor < 250)
+  Serial.println(valor);  
+  String sendData = (" " + String(valor) + " ");
+  transmissionState = Lora.startTransmit(sendData);
+  if (valor > 2000)
   {
-
-    digitalWrite(7, HIGH);
-
+    digitalWrite(LED, HIGH);
   }
   else
   {
-    digitalWrite(7, LOW);
+    digitalWrite(LED, LOW);
   }
 
-  delay(1000);
-
-
-
-
-/*
+  display.clearBuffer();
   display.drawStr(0, 10, "lora data show");
-  display.drawStr(0, 20, String("numero  " + (String)(counter)).c_str());
+  display.drawStr(0, 20, String("umidade " + (String)(valor)).c_str());
   display.sendBuffer();
 
-  counter++;
+delay(3000);
 
-  delay(5000);*/
+
 }
 
 void verifica(int state) {
