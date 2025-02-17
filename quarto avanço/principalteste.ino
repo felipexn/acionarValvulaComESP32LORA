@@ -10,13 +10,10 @@
 #include <WebServer.h>
 #include <TimeLib.h>
 
-//Definição do login e senha do wifi
-//#define EAP_IDENTIDADE "felipe@unifesspa.edu.br" // SSID da sua rede WiFi
-#define EAP_USUARIO "Bella bronze" // SSID da sua rede WiFi
-#define EAP_SENHA "delmadepilacao" // Senha da sua rede WiFi
 
-//#define EAP_USUARIO "HUAWEI P10 lite" // SSID da sua rede WiFi
-//#define EAP_SENHA "leslye5412" // Senha da sua rede WiFi
+#define EAP_USUARIO " " // SSID da sua rede WiFi
+#define EAP_SENHA "" // Senha da sua rede WiFi
+
 
 const char *ntpServer = "pool.ntp.org"; // Servidor NTP para sincronização de hora
 const long gmtOffset_sec = -3 * 3600;           // Deslocamento de fuso horário em segundos (0 para UTC)
@@ -140,11 +137,11 @@ void setup() {
 }
 
 // Disable interrupt when it's not needed
-volatile bool enableInterruptt = true;
+volatile bool permitirInterrupcao = true;
 
 // This function is called when a complete packet is received by the module
 void setFlag(void) {
-    if (!enableInterruptt) {
+    if (!permitirInterrupcao) {
         return;
     }
     transmitFlag = true;
@@ -179,7 +176,7 @@ void loop() {
 
     if (transmitFlag) {
         transmitFlag = false;
-        enableInterruptt = false;
+        permitirInterrupcao = false;
         Lora.startReceive();
         Serial.println(F("Receiving finished: "));
         String str;
@@ -207,7 +204,7 @@ void loop() {
         }
 
         delay(1000); // Delay for stability
-        enableInterruptt = true;
+        permitirInterrupcao = true;
     } else {
         Serial.println(F("Nothing to receive"));
         delay(1000);
