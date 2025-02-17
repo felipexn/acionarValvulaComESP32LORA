@@ -57,7 +57,7 @@ void setup(void) {
 
 
 // disable interrupt when it's not needed
-volatile bool enableInterrupt = true;
+volatile bool permitirInterrupcao = true;
 
 // this function is called when a complete packet
 // is received by the module
@@ -65,7 +65,7 @@ volatile bool enableInterrupt = true;
 //            and MUST NOT have any arguments!
 void setFlag(void) {
   // check if the interrupt is enabled
-  if(!enableInterrupt) {
+  if(!permitirInterrupcao) {
     return;
   }
 
@@ -82,7 +82,7 @@ void loop(){
 
   if(transmitFlag){
      transmitFlag = false;
-    enableInterrupt = false;
+    permitirInterrupcao = false;
     Lora.startReceive();
 		Serial.println(F("Receiving finished: "));
 		String str;
@@ -125,7 +125,7 @@ void loop(){
 
 		delay(1000);		
     transmitFlag = true;
-    enableInterrupt = true;
+    permitirInterrupcao = true;
 	}else
   Serial.println(F("nada pra receber"));
   delay(1000);}
