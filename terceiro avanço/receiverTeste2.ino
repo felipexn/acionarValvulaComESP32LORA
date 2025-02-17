@@ -11,8 +11,8 @@
 #include <TimeLib.h>
 
 //Definição do login e senha do wifi
-#define WIFI_SSID "JOAO" // SSID da sua rede WiFi
-#define WIFI_PASSWORD "ddddd2403@" // Senha da sua rede WiFi
+#define WIFI_SSID " " // SSID da sua rede WiFi
+#define WIFI_PASSWORD "" // Senha da sua rede WiFi
 
 const char *ntpServer = "pool.ntp.org"; // Servidor NTP para sincronização de hora
 const long gmtOffset_sec = -3 * 3600;           // Deslocamento de fuso horário em segundos (0 para UTC)
