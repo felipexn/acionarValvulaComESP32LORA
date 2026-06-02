@@ -33,6 +33,4 @@ Os sketches ainda aceitam os formatos antigos `umidade:<valor>%` e `acionar##<op
 - Potencia de transmissao: 10 dBm no sensor e 14 dBm nos nos de comando.
 - Modo dos receptores: recepcao reativada depois de cada transmissao.
 
-## Observacao
 
-O projeto ainda mistura historico de versoes em uma mesma pasta. O proximo passo mais limpo e separar cada sketch em sua propria pasta de projeto.
